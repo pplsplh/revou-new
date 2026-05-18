@@ -16,14 +16,14 @@ Implementasi platform SaaS berbasis Next.js 14 (App Router) untuk menghasilkan k
   - _Requirements: 8.2, 8.7_
 
 - [ ] 2. Implementasi autentikasi (NextAuth + email/password + Google OAuth)
-  - [-] 2.1 Konfigurasi NextAuth v5 dan middleware proteksi route
+  - [x] 2.1 Konfigurasi NextAuth v5 dan middleware proteksi route
     - Buat file `src/lib/auth.ts` dengan konfigurasi NextAuth: Credentials provider (email/password) dan Google OAuth 2.0 provider
     - Implementasi session strategy (JWT atau database session, 30 hari)
     - Buat file `src/app/api/auth/[...nextauth]/route.ts`
     - Buat `middleware.ts` di root untuk melindungi route `/dashboard`, `/generate`, `/subscription`
     - _Requirements: 1.5, 1.6_
 
-  - [~] 2.2 Implementasi Server Actions autentikasi
+  - [ ] 2.2 Implementasi Server Actions autentikasi
     - Buat file `src/actions/auth.actions.ts` dengan fungsi: `registerUser`, `loginUser`, `logoutUser`, `sendVerificationEmail`, `verifyEmail`, `sendPasswordResetEmail`, `resetPassword`
     - Implementasi hashing password dengan bcrypt (salt rounds = 12) di `registerUser`
     - Implementasi logika lockout akun: cek `LoginAttempt` dalam 15 menit terakhir; jika ≥5 gagal, tolak login dan kirim email notifikasi
@@ -47,14 +47,14 @@ Implementasi platform SaaS berbasis Next.js 14 (App Router) untuk menghasilkan k
 - [~] 3. Checkpoint — Pastikan semua test autentikasi lulus
   - Pastikan semua test lulus, tanyakan kepada user jika ada pertanyaan.
 
-- [ ] 4. Implementasi Email Service
-  - [-] 4.1 Buat Email Service dengan Resend
+- [x] 4. Implementasi Email Service
+  - [x] 4.1 Buat Email Service dengan Resend
     - Buat file `src/lib/email-service.ts` dengan fungsi: `sendVerificationEmail`, `sendPasswordResetEmail`, `sendPaymentConfirmationEmail`, `sendPaymentFailedEmail`, `sendSubscriptionRenewalReminderEmail`
     - Implementasi graceful degradation: jika Resend tidak tersedia saat registrasi, tetap selesaikan registrasi dan log error
     - _Requirements: 1.2, 4.6, 4.7, 4.8_
 
 - [ ] 5. Implementasi Quota Manager
-  - [-] 5.1 Buat Quota Manager dengan operasi atomik
+  - [x] 5.1 Buat Quota Manager dengan operasi atomik
     - Buat file `src/lib/quota-manager.ts` dengan fungsi: `checkAndDecrementQuota`, `getQuotaStatus`, `resetAllFreeUserQuotas`, `initializeUserQuota`
     - Implementasi `checkAndDecrementQuota` menggunakan `prisma.$transaction` untuk mencegah race condition
     - Implementasi `resetAllFreeUserQuotas` yang idempotent: set `used = 0` untuk semua Free_User (bukan decrement)
